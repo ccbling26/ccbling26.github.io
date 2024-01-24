@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Redis 相关知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="http://example.com/2024/01/23/redis/index.html">
+<meta property="og:site_name" content="随笔">
+<meta property="og:description" content="Redis 相关知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redis/Redis%E5%AE%9E%E7%8E%B0%E9%94%AE%E5%80%BC%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B9%E5%BC%8F.png">
+<meta property="article:published_time" content="2024-01-23T02:01:24.000Z">
+<meta property="article:modified_time" content="2024-01-24T04:58:20.959Z">
+<meta property="article:author" content="Bling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redis/Redis%E5%AE%9E%E7%8E%B0%E9%94%AE%E5%80%BC%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B9%E5%BC%8F.png">
+
+<link rel="canonical" href="http://example.com/2024/01/23/redis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Redis | 随笔</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">随笔</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/23/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Bling">
+      <meta itemprop="description" content="绳锯木断，水滴石穿">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随笔">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-01-23 10:01:24" itemprop="dateCreated datePublished" datetime="2024-01-23T10:01:24+08:00">2024-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-24 12:58:20" itemprop="dateModified" datetime="2024-01-24T12:58:20+08:00">2024-01-24</time>
+              </span>
+
+          
+            <div class="post-description">Redis 相关知识</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="字符串-String"><a href="#字符串-String" class="headerlink" title="字符串 String"></a>字符串 String</h2><p>最基本的 key-value 结构，key 是唯一标识，value 是具体的值</p>
+<blockquote>
+<p>value 可以是字符串、数字（整数或浮点数），最多可以容纳 <code>512M</code> 的数据长度</p>
+</blockquote>
+<p>底层数据结构主要是 <code>int</code> 和 <code>SDS</code>（简单动态字符串）</p>
+<blockquote>
+<p>SDS 与 C 的原生字符串的区别</p>
+<ul>
+<li>SDS 不仅可以存放文本数据，还可以存放二进制数据（图片、音频、视频、压缩文件等）。这是因为 SDS 使用 <code>len</code> 属性的值而不是空字符来判断字符串是否结束，并且 SDS 的所有 API 都会以处理二进制的方式来处理 SDS 存放在 <code>buf[]</code> 数组里的数据。</li>
+<li>SDS 获取字符串长度的时间复杂度是 O(1)。这是因为 SDS 使用 <code>len</code> 属性记录了字符串长度</li>
+<li>Redis 的 SDS API 是安全的，这是因为 SDS 在拼接字符串之前会检查 SDS 空间是否满足要求，如果空间不够会自动扩容，不会导致缓冲区溢出问题。</li>
+</ul>
+</blockquote>
+<p>字符串对象的内部编码有三种 <code>int</code>、 <code>embstr</code> 和 <code>raw</code></p>
+<blockquote>
+<p>编码方式选择</p>
+<ul>
+<li><code>int</code>：保存对象是整数值，且可以用 long 类型表示，整数值保存在字符串对象结构的 <code>ptr</code> 属性里面（将 <code>void*</code> 转换成 <code>long</code>）</li>
+<li><code>embstr</code>：保存对象是长度小于等于 32 字节（redis 2.*）的字符串（redis 3.0-4.0 是 39 字节，5.0 是 44 字节），使用 <code>SDS</code> 保存</li>
+<li><code>raw</code>：保存对象是长度大于 32 字节（redis 2.*）的字符串（redis 3.0-4.0 是 39 字节，5.0 是 44 字节），使用 <code>SDS</code> 保存</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>embstr</code> 和 <code>raw</code> 的区别</p>
+<ul>
+<li><code>embstr</code> 会通过一次内存分配函数来分配一块连续的内存空间来保存 <code>redisObject</code> 和 <code>SDS</code>，而 <code>raw</code> 编码会通过调用两次内存分配函数来分别分配两块空间来保存 <code>redisObject</code> 和 <code>SDS</code>。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>embstr</code> 只进行一次内存分配的优缺点</p>
+<ul>
+<li>在字符串对象创建和释放时，只需要调用一次内存分配&#x2F;释放</li>
+<li>数据都存放在一块连续的内存里，根据局部性原理，可以更好地利用 CPU 缓存，提升性能</li>
+<li>当字符串长度增加时，整个 <code>redisObject</code> 和 <code>SDS</code> 需要重新分配空间，因此 <code>embstr</code> 编码的字符串对象实际上是只读的。在对 <code>embstr</code> 编码的字符串进行修改时，实际上是先转换成 <code>raw</code> 再修改</li>
+</ul>
+</blockquote>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>基本操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET key <span class="comment"># 获取 key 对应的 value</span></span><br><span class="line">SET key value <span class="comment"># 设置 key-value</span></span><br><span class="line">EXISTS key <span class="comment"># 判断 key 是否存在</span></span><br><span class="line">STRLEN key <span class="comment"># 获取 key 对应的 value 的长度</span></span><br><span class="line">DEL key	<span class="comment"># 删除 key</span></span><br></pre></td></tr></table></figure>
+
+<p>批量操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MSET key1 value1 key2 value2 <span class="comment"># 批量设置</span></span><br><span class="line">MGET key1 key2 <span class="comment"># 批量获取</span></span><br></pre></td></tr></table></figure>
+
+<p>计数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INCR number <span class="comment"># 数字自增</span></span><br><span class="line">INCRBY number x <span class="comment"># 数字增加 x</span></span><br><span class="line">DECR number <span class="comment"># 数字自减</span></span><br><span class="line">DECRBY number x <span class="comment"># 数字增加 x</span></span><br></pre></td></tr></table></figure>
+
+<p>过期</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXPIRE number 60 <span class="comment"># 设置过期时间</span></span><br><span class="line">TTL number <span class="comment"># 查看多久过期</span></span><br><span class="line">SET key value EX 60 <span class="comment"># 设置值和过期时间（EX 单位为秒，PX 单位为毫秒）</span></span><br><span class="line">SETEX key value	<span class="comment"># 设置值和过期时间（EX 单位为秒，PX 单位为毫秒）</span></span><br></pre></td></tr></table></figure>
+
+<p>不存在就插入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SETNX key value	<span class="comment"># 不存在就插入</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、缓存对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET user:1 <span class="string">&#x27;&#123;&quot;name&quot;:&quot;john&quot;, &quot;age&quot;:25&#125;&#x27;</span> <span class="comment"># 直接缓存整个对象的 JSON</span></span><br><span class="line">MSET user:1:name john user:1:age 25 <span class="comment"># 将 key 进行分离</span></span><br></pre></td></tr></table></figure>
+
+<p>2、计数：如计算访问次数、点赞、转发、库存数量等</p>
+<p>3、分布式锁：SET 命令的 <code>NX</code> 参数实现，通过是否插入成功来表示是否加锁成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET KEY VALUE NX PX 10000</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>解锁时需要保证执行操作的客户端就是加锁的客户端，才能将 key 删除。这是两个操作，为了保证解锁的原子性，可以通过 Lua 脚本以原子性方式执行</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> redis.call(<span class="string">&quot;get&quot;</span>, key) == value <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">&quot;del&quot;</span>, key)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>4、共享 Session 信息</p>
+<h2 id="哈希-Hash"><a href="#哈希-Hash" class="headerlink" title="哈希 Hash"></a>哈希 Hash</h2><p>一个键值对集合，value 的形式为：<code>value = [&#123;field1, value1&#125;, ..., &#123;fieldN, valueN&#125;]</code></p>
+<p>Hash 类型的底层数据结构是由<strong>压缩列表</strong>或<strong>哈希表</strong>实现的（Redis 7.0 中，压缩列表被 <code>listpack</code> 替换）</p>
+<blockquote>
+<p>压缩列表：当元素个数小于 512 个且每个元素的值小于 64 字节（分别由 <code>hash-max-ziplist-entries</code> 和 <code>hash-max-ziplist-value</code> 配置）</p>
+<p>哈希表：不满足上述任一条件</p>
+</blockquote>
+<h3 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HSET key field value <span class="comment"># 存储一个哈希表 key 的键值</span></span><br><span class="line">HMSET key field value [field value ...] <span class="comment"># 批量存储一个哈希表 key 的多个键值</span></span><br><span class="line"></span><br><span class="line">HGET key field <span class="comment"># 获取一个哈希表 key 对应的 field 的值</span></span><br><span class="line">HGET key field [field ...] <span class="comment"># 批量获取一个哈希表 key 对应的多个 field 的值</span></span><br><span class="line"></span><br><span class="line">HLEN key <span class="comment"># 返回哈希表 key 中 field 的数量</span></span><br><span class="line">HGETALL key <span class="comment"># 返回哈希表 key 中所有的键值</span></span><br><span class="line"></span><br><span class="line">HINCRBY key field n <span class="comment"># 为哈希表 key 中 field 键的值加上增量 n</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、缓存对象：比如用户的详细信息、商品的详细信息</p>
+<blockquote>
+<p>String + Json 也是存储对象的一种方式。一般对象用 String + Json 存储，对象中某些频繁变化的属性可以考虑抽出来用 Hash 类型存储</p>
+</blockquote>
+<h2 id="列表-List"><a href="#列表-List" class="headerlink" title="列表 List"></a>列表 List</h2><p>简单的字符串列表，按照插入顺序排序，可以从头部或尾部向 List 列表添加元素</p>
+<p>在 3.2 版本之前，底层数据结构是由<strong>双向链表</strong>或<strong>压缩列表</strong>实现的，在 3.2 版本之后只由 <strong>quicklist</strong> 实现</p>
+<ul>
+<li>压缩列表：当<strong>列表元素小于 512 个</strong>且<strong>列表每个元素的值小于 64 字节</strong>（分别由 <code>list-max-ziplist-entries</code> 和 <code>list-max-ziplist-value</code> 配置）</li>
+<li>双向链表：只要不满足上述任一条件</li>
+<li>quicklist：压缩列表和双向链表的混合体，它将双向链表按段切分，每一段使用压缩列表来紧凑存储，多个压缩列表之间使用双向指针串接起来</li>
+</ul>
+<h3 id="常用命令-2"><a href="#常用命令-2" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LPUSH key value [value ...] <span class="comment"># 将一个或多个 value 插入到 key 列表的表头，最后面的 value 在最前面</span></span><br><span class="line">RPUSH key value [value ...] <span class="comment"># 将一个或多个 value 插入到 key 列表的表尾巴，最后面的 value 在最后面</span></span><br><span class="line"></span><br><span class="line">LRANGE key begin end <span class="comment"># 返回指定区间的数据，从 0 开始</span></span><br><span class="line"></span><br><span class="line">LPOP key <span class="comment"># 移除并返回表头的元素</span></span><br><span class="line">RPOP key <span class="comment"># 移除并返回表尾的元素</span></span><br><span class="line">BLPOP key [key ...] <span class="built_in">timeout</span> <span class="comment"># 从表头移除一个元素，如果没有则阻塞 timeout 秒，timeout 为 0 表示一直阻塞</span></span><br><span class="line">BRPOP key [key ...] <span class="built_in">timeout</span> <span class="comment"># 从表尾移除一个元素，如果没有则阻塞 timeout 秒，timeout 为 0 表示一直阻塞</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、消息队列</p>
+<ul>
+<li>消息保序：使用 <code>LPUSH</code> 和 <code>RPOP</code>（或反过来）。生产者在往 List 中写入数据时，List 并不会主动地通知消费者，如果消费者一直轮询 <code>RPOP</code> 命令，则消耗了大量不必要的 CPU 性能。因此 Redis 提供了 <code>BRPOP</code>（阻塞式读取）命令，即消费者在没有读到数据时会自动阻塞，直到有新的数据写入，再开始读取。</li>
+<li>消息不重复处理：需要为每个消息添加一个全局的 ID，消费者需要记录已经处理过的消息 ID</li>
+<li>消息可靠性：List 类型提供了 <code>BRPOPLPUSH</code> 命令，其作用是让消费者程序从一个 List 中读取消息，同时把这个消息再插入到备份 List 里</li>
+<li><strong>缺陷</strong>：不支持消费组的实现，因此不支持多个消费者消费同一条消息</li>
+</ul>
+<h2 id="集合-Set"><a href="#集合-Set" class="headerlink" title="集合 Set"></a>集合 Set</h2><p>一个无序并唯一的键值集合，存储顺序与插入顺序无关</p>
+<blockquote>
+<p>概念和数学中个的集合基本类似，可以交集，并集，差集等</p>
+<ul>
+<li>但计算复杂度较高，在数据量较大的情况下执行可能会导致 Redis 实例阻塞（可以选择一个从库完成聚合统计，或者把数据返回给客户端，由客户端来完成聚合统计）</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Set 类型与 List 类型的区别</p>
+<ul>
+<li>List 类型可以存储重复元素，Set 类型只能存储非重复数据</li>
+<li>List 类型时按照元素的先后顺序进行存储，Set 是无序存储</li>
+</ul>
+</blockquote>
+<p>底层数据结构是由<strong>哈希表</strong>或<strong>整数集合</strong>实现的</p>
+<blockquote>
+<p>整数集合：集合中元素个数不超过 512 个（由 <code>set-maxintset-entries</code> 配置）</p>
+<p>哈希表：不满足上述条件</p>
+</blockquote>
+<h3 id="常用命令-3"><a href="#常用命令-3" class="headerlink" title="常用命令"></a>常用命令</h3><p>常用操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SADD key member [member ...] <span class="comment"># 往集合 key 中存入元素，元素存在则忽略，若 key 不存在则新建</span></span><br><span class="line"></span><br><span class="line">SMEMBERS key <span class="comment"># 获取集合 key 中所有元素</span></span><br><span class="line">SCARD key <span class="comment"># 获取集合 key 中的元素个数</span></span><br><span class="line"></span><br><span class="line">SISMEMBER key member <span class="comment"># 判断 member 元素是否存在于集合 key 中</span></span><br><span class="line"></span><br><span class="line">SREM key member [member ...] <span class="comment"># 从集合 key 中删除元素</span></span><br><span class="line">SRANDMEMBER key [count] <span class="comment"># 从集合 key 中随机选出 count 个元素，元素不从 key 中删除</span></span><br><span class="line">SPOP key [count] <span class="comment"># 从集合 key 中随机选出 count 个元素，元素从 key 中删除</span></span><br></pre></td></tr></table></figure>
+
+<p>运算操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SINTER key [key ...] <span class="comment"># 交集运算</span></span><br><span class="line">SINTERSTORE destination key [key ...] <span class="comment"># 将交集结果存入新集合 destination 中</span></span><br><span class="line"></span><br><span class="line">SUNION key [key ...] <span class="comment"># 并集运算</span></span><br><span class="line">SUNIONSTORE destination key [key ...] <span class="comment"># 将并集结果存入新集合 destination 中</span></span><br><span class="line"></span><br><span class="line">SDIFF key [key ...] <span class="comment"># 差集运算</span></span><br><span class="line">SDIFFSTORE destination key [key ...] <span class="comment"># 将差集结果存入新集合 destination 中</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、点赞</p>
+<p>2、共同关注：交集运算</p>
+<p>3、抽奖：<code>SRANDMEMBER</code> 实现重复中奖和 <code>SPOP</code> 实现不可重复中奖</p>
+<h2 id="有序集合-Zset"><a href="#有序集合-Zset" class="headerlink" title="有序集合 Zset"></a>有序集合 Zset</h2><p>相比于 Set 类型多了一个排序属性 <code>score</code>，但没有差集运算</p>
+<blockquote>
+<p>每个存储元素由两个值组成：有序集合的元素值和排序值。集合里的元素不能重复，排序值可以重复</p>
+</blockquote>
+<p>底层数据结构由<strong>压缩列表</strong>或<strong>跳表</strong>实现。在 Redis 7.0 中，压缩列表被 <code>listpack</code> 替换</p>
+<blockquote>
+<p>压缩列表：元素个数小于 128 个且每个元素的值小于 64 字节</p>
+<p>跳表：不满足上述任一条件时</p>
+</blockquote>
+<h3 id="常用命令-4"><a href="#常用命令-4" class="headerlink" title="常用命令"></a>常用命令</h3><p>常用操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ZADD key score member [[score member] ...] <span class="comment"># 往有序集合 key 中加入带分值元素</span></span><br><span class="line">ZREM key member [member ...] <span class="comment"># 往有序集合 key 中删除元素</span></span><br><span class="line">ZSCORE key member <span class="comment"># 返回有序集合 key 中元素 member 的分值</span></span><br><span class="line">ZCARD key <span class="comment"># 返回有序集合 key 中元素个数</span></span><br><span class="line">ZINCRBY key increment member <span class="comment"># 为有序集合 key 中元素 member 的分值加上 increment</span></span><br><span class="line"></span><br><span class="line">ZRANGE key start stop [WITHSCORES] <span class="comment"># 正序获取有序集合 key 从 start 下标到 stop 下标的元素</span></span><br><span class="line">ZREVRANGE key start stop [WITHSCORES] <span class="comment"># 倒序获取有序集合 key 从 start 下标到 stop 下标的元素</span></span><br><span class="line">ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count] <span class="comment"># 返回有序集合中指定分数区间内的成员，分数由低到高排序</span></span><br><span class="line">ZRANGEBYLEX key min max [LIMIT offset count] <span class="comment"># 用于分数相同的有序集合中，返回指定成员区间内的成员，按字典正序排列</span></span><br><span class="line">ZREVRANGEBYLEX key max min [LIMIT offset count] <span class="comment"># 用于分数相同的有序集合中，返回指定成员区间内的成员，按字典倒序排列</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运算操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># numberkeys: key 的数量</span></span><br><span class="line"><span class="comment"># WEIGHTS: key 中元素对应分值的权重</span></span><br><span class="line"><span class="comment"># AGGREGATE: 相同元素分数的计算方式</span></span><br><span class="line">ZUNIONSTORE destkey numberkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] <span class="comment"># 并集计算</span></span><br><span class="line">ZINTERSTORE destkey numberkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] <span class="comment"># 交集计算</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、排行榜</p>
+<p>2、电话、姓名排序</p>
+<h2 id="位图-Bitmap"><a href="#位图-Bitmap" class="headerlink" title="位图 Bitmap"></a>位图 Bitmap</h2><blockquote>
+<p>2.2 版新增</p>
+</blockquote>
+<p>一串连续的二进制数组，可以通过偏移量定位元素</p>
+<p>底层数据结构是 String 类型。String 类型会保存为二进制的字节数组，可以把 Bitmap 看作是一个 bit 数组</p>
+<h3 id="常用命令-5"><a href="#常用命令-5" class="headerlink" title="常用命令"></a>常用命令</h3><p>基本操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SETBIT key offset value <span class="comment"># 设置值，value 只能是 0 和 1</span></span><br><span class="line">GETBIT key offset <span class="comment"># 获取值</span></span><br><span class="line">BITCOUNT key start end <span class="comment"># 获取指定范围内值为 1 的个数，start 和 end 以字节为单位</span></span><br></pre></td></tr></table></figure>
+
+<p>运算操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BITOP [AND|OR|XOR|NOT] [result] [key1 ... keyN] <span class="comment"># BitMap 间的运算</span></span><br><span class="line"><span class="comment"># result 存储计算结果</span></span><br><span class="line"><span class="comment"># key1 … keyN 表示参与运算的 key，空格分割，not 运算只能一个 key</span></span><br><span class="line"><span class="comment"># 在处理不同长度的字符串时，较短的那个字符串所缺少的部分会被看作 0</span></span><br><span class="line"><span class="comment"># 返回值是目标 key 的字符串的长度（以字节byte为单位），和输入 key 中最长的字符串长度相等</span></span><br><span class="line"></span><br><span class="line">BITPOS [key] [value] <span class="comment"># 返回指定 key 中第一次出现指定 value 的位置，value 只能是 0 和 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-5"><a href="#应用场景-5" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、签到统计</p>
+<p>2、判断用户登陆态</p>
+<p>3、连续签到用户总数</p>
+<h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><blockquote>
+<p>2.8.9 版新增</p>
+</blockquote>
+<p>一种用于统计基数（指统计一个集合中不重复的元素个数）的数据集合类型</p>
+<p>统计规则是基于概率完成的，不是非常准确</p>
+<h3 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PFADD key element [element ...] <span class="comment"># 添加指定元素到 HyperLogLog 中</span></span><br><span class="line">PFCOUNT key [key ...] <span class="comment"># 返回给定 HyperLogLog 的基数估算值</span></span><br><span class="line">PFMERGE destkey sourcekey [sourcekey ...] <span class="comment"># 将多个 HyperLogLog 合并为一个 HyperLogLog</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-6"><a href="#应用场景-6" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、百万级网页 UV 计数（User View）</p>
+<h2 id="GEO"><a href="#GEO" class="headerlink" title="GEO"></a>GEO</h2><blockquote>
+<p>3.2 版新增</p>
+</blockquote>
+<p>主要用于存储地理位置信息，并对存储的信息进行操作</p>
+<p>底层数据结构是 Zset 类型</p>
+<blockquote>
+<p>使用 GeoHash 编码方法实现了经纬度到 Zset 中元素权重分数的转换，这其中的两个关键机制就是「对二维地图做区间划分」和「对区间进行编码」。一组经纬度落在某个区间后，就用区间的编码值来表示，并把编码值作为 Zset 元素的权重分数。这样可以利用 Sorted Set 提供的“<strong>按权重进行有序范围查找</strong>“的特性实现<strong>搜索附近</strong>的需求</p>
+</blockquote>
+<h3 id="常见命令-1"><a href="#常见命令-1" class="headerlink" title="常见命令"></a>常见命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GEOADD key longitude latitude member [longitude latitude member ...] <span class="comment"># 存储一个或多个地理空间位置(经度、纬度、位置名称)添加到指定的 key 中</span></span><br><span class="line">GEOPOS key member [member ...] <span class="comment"># 从给定的 key 里返回所有指定位置名称的位置（经度和纬度），不存在的返回 nil</span></span><br><span class="line">GEODIST key member1 member2 [m|km|ft|mi] <span class="comment"># 返回两个给定位置之间的距离</span></span><br><span class="line">GEORADIUS key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key] <span class="comment"># 根据用户给定的经纬度坐标来获取指定范围内的地理位置集合</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-7"><a href="#应用场景-7" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、打车</p>
+<h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><blockquote>
+<p>5.0 版新增</p>
+</blockquote>
+<p>专门为消息队列设计的数据类型</p>
+<ul>
+<li>支持消息的持久化</li>
+<li>支持自动生成全局唯一 ID</li>
+<li>支持 ack 确认消息的模式</li>
+<li>支持消费组模式（同一个消费组里的消费者不能消费同一条消息；在创建消费组时，不同消费组指定相同位置，不同消费组的消费者可以消费同一条消息）</li>
+</ul>
+<blockquote>
+<p>基于 Stream 实现的消息队列，如何保证消费者在发生故障或宕机再次重启后，仍然可以读取未处理完的消息？</p>
+</blockquote>
+<p>Streams 会自动使用内部队列（PENDING List）留存消费组里每个消费者读取的消息，直到消费者使用 <code>XACK</code> 命令通知 Streams 消息已经处理完成。当 Redis 重启后，消费者可以用 <code>XPENDING</code> 命令查看已读取、但尚未确认处理完成的消息。</p>
+<blockquote>
+<p>Redis 基于 Stream 消息队列与专业的消息队列有哪些差距？</p>
+</blockquote>
+<p>能不能将 Redis 作为消息队列使用，主要取决于业务场景（当业务场景简单、对数据丢失不敏感、消息积压概率比较小时，可以使用）。一个专业的消息队列需要做到<strong>消息不丢失</strong>和<strong>消息可堆积</strong>两块</p>
+<p>消息丢失问题主要考虑生产者、队列中间件和消费者三块。</p>
+<ul>
+<li><p>生产者会不会丢消息取决于生产者对于异常情况的处理是否合理（只有收到来自中间件的 ack 确认后才算发送成功，否则需要进行消息重发）</p>
+</li>
+<li><p>消费者不会出现数据丢失，这是因为 Redis 的 Stream 会自动使用内部队列（PENDING List），留存消费者读取但未处理完的消息</p>
+</li>
+<li><p>Redis 消息中间件可能会丢失消息</p>
+<ul>
+<li>持久化时丢失：AOF 持久化配置为每秒写盘，但这个写盘过程是异步的，Redis 宕机时可能会丢失数据</li>
+<li>主从复制也是异步的，主从切换时，也存在丢失数据的可能</li>
+</ul>
+<blockquote>
+<p>像 RabbitMQ 或 Kafka 这类专业的队列中间件，在使用时是部署一个集群，生产者在发布消息时，队列中间件通常会写多个节点（副本），这样即便其中一个节点挂了，也能保证集群的数据不丢失</p>
+</blockquote>
+</li>
+</ul>
+<p>Redis 的数据都存储在内存中，一旦发生消息积压，Redis 的内存持续增长，可能面临 OOM 风险。因此 Redis 的 Stream 提供了可以指定队列最大长度的功能，但当队列长度超过上限后，旧消息会被删除，只保留固定长度的新消息，即出现消息丢失问题。但 Kafka、RabbitMQ 专业的消息队列它们的数据都是存储在磁盘上，当消息积压时，无非就是多占用一些磁盘空间</p>
+<blockquote>
+<p>Redis 发布&#x2F;订阅机制为什么不可以作为消息队列？</p>
+</blockquote>
+<p>Redis 发布&#x2F;订阅机制存在以下缺点，都与数据丢失有关</p>
+<ul>
+<li>发布&#x2F;订阅机制没有基于任何数据类型实现，不具备数据持久化能力，当 Redis 宕机重启，发布&#x2F;订阅机制的数据会全部丢失</li>
+<li>订阅者离线重连之后不能消费之前的历史消息</li>
+<li>当消费端有一定的消息积压时（超过 32M 或者是 60s 内持续保持在 8M 以上，配置文件里设置，<code>client-output-buffer-limit pubsub 32mb 8mb 60</code>），消费端会被强行断开</li>
+</ul>
+<h3 id="常用命令-6"><a href="#常用命令-6" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">XADD key ID field value [field value ...] <span class="comment"># 添加消息，ID 为 * 时表示消息 ID 由 Redis 生成，返回值格式为 1526919030474-55，前者是 Unix 时间（以毫秒为单位），后者是一个序列号，用于区分在同一毫秒内生成的 ID</span></span><br><span class="line">XLEN key <span class="comment"># 返回 key 对应的 Stream 的条目数量</span></span><br><span class="line">XREAD [COUNT count] [BLOCK milliseconds] STREAMS key [key ...] <span class="built_in">id</span> [<span class="built_in">id</span> ...] <span class="comment"># 读取消息，可以设定 BLOCK 配置项实现阻塞读</span></span><br><span class="line">XDEL key <span class="built_in">id</span> [<span class="built_in">id</span> ...] <span class="comment"># 根据消息 ID 删除消息</span></span><br><span class="line">DEL key [key ...] <span class="comment"># 删除整个 Stream</span></span><br><span class="line">XRANGE key start end [COUNT count] <span class="comment"># 读取区间消息</span></span><br><span class="line">XREADGROUP GROUP group consumer [COUNT count] [BLOCK milliseconds] [NOACK] STREAMS key [key ...] <span class="built_in">id</span> [<span class="built_in">id</span> ...] <span class="comment"># 按消费组形式读取消息</span></span><br><span class="line">XPENDING key group [[IDLE min-idle-time] start end count [consumer]] <span class="comment"># 用来查询每个消费组内所有消费者已读取、但尚未确认的消息</span></span><br><span class="line">XACK key group <span class="built_in">id</span> [<span class="built_in">id</span> ...] <span class="comment"># 向消息队列确认消息处理已完成</span></span><br></pre></td></tr></table></figure>
+
+<p>消费组模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XGROUP CREATE key group &lt;<span class="built_in">id</span> | $&gt; [MKSTREAM] [ENTRIESREAD entries-read] <span class="comment"># 创建消费组</span></span><br><span class="line">XGROUP CREATECONSUMER key group consumer <span class="comment"># 创建消费者</span></span><br><span class="line">XGROUP DELCONSUMER key group consumer <span class="comment"># 删除消费者</span></span><br><span class="line">XGROUP DESTROY key group <span class="comment"># 删除消费组</span></span><br><span class="line">XGROUP SETID key group &lt;<span class="built_in">id</span> | $&gt; [ENTRIESREAD entries-read] <span class="comment"># 设置最后传递给消费组的 ID</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景-8"><a href="#应用场景-8" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、消息队列</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>Redis 数据结构并不是指 String、List、Hash、Set、Zset 等对象，这些是 Redis 键值对中值的数据类型，即数据的保存形式，这些对象底层实现的方式才是数据结构</p>
+<blockquote>
+<p>Redis 是如何实现键值对数据库的？</p>
+</blockquote>
+<p><img src="/images/redis/Redis%E5%AE%9E%E7%8E%B0%E9%94%AE%E5%80%BC%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B9%E5%BC%8F.png" alt="Redis实现键值对数据库方式"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1、<a target="_blank" rel="noopener" href="https://xiaolincoding.com/redis/">小林 coding - 图解 Redis</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/22/create_your_own_blog/" rel="prev" title="创建自己的博客">
+      <i class="fa fa-chevron-left"></i> 创建自己的博客
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-String"><span class="nav-number">1.1.</span> <span class="nav-text">字符串 String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.1.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C-Hash"><span class="nav-number">1.2.</span> <span class="nav-text">哈希 Hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8-List"><span class="nav-number">1.3.</span> <span class="nav-text">列表 List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88-Set"><span class="nav-number">1.4.</span> <span class="nav-text">集合 Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88-Zset"><span class="nav-number">1.5.</span> <span class="nav-text">有序集合 Zset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-4"><span class="nav-number">1.5.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E5%9B%BE-Bitmap"><span class="nav-number">1.6.</span> <span class="nav-text">位图 Bitmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-5"><span class="nav-number">1.6.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyperLogLog"><span class="nav-number">1.7.</span> <span class="nav-text">HyperLogLog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.1.</span> <span class="nav-text">常见命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-6"><span class="nav-number">1.7.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEO"><span class="nav-number">1.8.</span> <span class="nav-text">GEO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4-1"><span class="nav-number">1.8.1.</span> <span class="nav-text">常见命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-7"><span class="nav-number">1.8.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream"><span class="nav-number">1.9.</span> <span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-6"><span class="nav-number">1.9.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-8"><span class="nav-number">1.9.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bling"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Bling</p>
+  <div class="site-description" itemprop="description">绳锯木断，水滴石穿</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-01 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bling</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
