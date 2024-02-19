@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务">
+<meta property="og:url" content="http://example.com/2024/02/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="随笔">
+<meta property="og:description" content="微服务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E5%BE%AE%E6%9C%8D%E5%8A%A1/OAuth2.png">
+<meta property="article:published_time" content="2024-02-19T08:31:15.000Z">
+<meta property="article:modified_time" content="2024-02-19T08:32:28.063Z">
+<meta property="article:author" content="Bling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E5%BE%AE%E6%9C%8D%E5%8A%A1/OAuth2.png">
+
+<link rel="canonical" href="http://example.com/2024/02/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>微服务 | 随笔</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">随笔</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Bling">
+      <meta itemprop="description" content="绳锯木断，水滴石穿">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随笔">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微服务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-19 16:31:15 / 修改时间：16:32:28" itemprop="dateCreated datePublished" datetime="2024-02-19T16:31:15+08:00">2024-02-19</time>
+            </span>
+
+          
+            <div class="post-description">微服务</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是微服务架构，为什么采用它"><a href="#什么是微服务架构，为什么采用它" class="headerlink" title="什么是微服务架构，为什么采用它"></a>什么是微服务架构，为什么采用它</h1><ul>
+<li>微服务是一种软件设计的架构风格，它解决了传统<strong>单体应用</strong>的缺点。通常人们会根据业务逻辑或者业务特点将一个单一应用程序<strong>拆分</strong>成一组小型服务，服务之间通过 HTTP 形式的 RESTful API 进行通信</li>
+<li>我们采用微服务架构主要从两个方面考虑：第一，我们希望某个业务模块发生迭代更新时，不需要重新构建和部署整个服务；第二，我们希望每个模块由不同的团队负责，对开发进行提速提效</li>
+<li>除了我们考虑的方面，微服务还能做到不同服务根据场景的不同采用不同的技术方案，提高了灵活性</li>
+<li>微服务也存在一些弊端<ul>
+<li>服务之间的测试不太好覆盖，这增加了 Bug 定位的难度</li>
+<li>增加了运维的复杂性，需要对多个服务进行监督</li>
+<li>对网络通信要求比较高，需要考虑通信时延和网络开销。</li>
+</ul>
+</li>
+</ul>
+<h1 id="单体应用"><a href="#单体应用" class="headerlink" title="单体应用"></a>单体应用</h1><ul>
+<li>在单体应用的架构风格下，软件的所有功能模块和业务逻辑都放在单个服务中</li>
+<li>放在单个服务的优点是十分明显的，即部署方便，运行&#x2F;测试简单</li>
+<li>但随着业务量的增加，项目的代码会变得复杂臃肿，维护困难，而且当系统发生变更时，整个服务都需要重新构建和部署，增加了系统的停机时间，效率十分低下。</li>
+</ul>
+<h1 id="拆分和集群之间有什么区别"><a href="#拆分和集群之间有什么区别" class="headerlink" title="拆分和集群之间有什么区别"></a>拆分和集群之间有什么区别</h1><ul>
+<li>拆分：不同的多台服务器上部署不同的服务模块，模块之间通过 RPC 通信和调用，用于拆分业务功能，独立部署，多个服务器共同组成一个整体对外提供服务</li>
+<li>集群：不同的多台服务器上部署相同的服务模块，通过分布式调度软件进行统一调度，用于分流容灾，降低单个服务器的访问压力</li>
+</ul>
+<h1 id="微服务在你们项目中是怎么应用的"><a href="#微服务在你们项目中是怎么应用的" class="headerlink" title="微服务在你们项目中是怎么应用的"></a>微服务在你们项目中是怎么应用的</h1><ul>
+<li>在 SCA 中，我们主要拆分成 5 个服务<ul>
+<li>backend_service：它主要充当 gateway 的作用（流转 data_service 和 receive_service 的数据），也承担部分数据接口</li>
+<li>receive_service：它主要负责解析文件的接收和管理</li>
+<li>data_service：主要负责数据解析工作</li>
+<li>alert_service：主要负责报警信息处理、邮件发送</li>
+<li>supplier_service：主要对供应商信息进行维护管理</li>
+</ul>
+</li>
+</ul>
+<h1 id="RESTful-是啥，为什么需要使用它"><a href="#RESTful-是啥，为什么需要使用它" class="headerlink" title="RESTful 是啥，为什么需要使用它"></a>RESTful 是啥，为什么需要使用它</h1><ul>
+<li>RESTful 是一套接口设计规范</li>
+<li>在采用前后端分离的模式下，前后端是通过接口来完成通信的，随着业务的扩大和接口数量的增加，接口的可读性、扩展性也变得愈加重要，而 RESTful 满足这些要求（降低沟通成本，提高开发效率）</li>
+<li>在 RESTful 架构中，<a href="#%E6%AF%8F%E4%B8%AA%E7%BD%91%E5%9D%80%E4%BB%A3%E8%A1%A8%E4%B8%80%E7%A7%8D%E8%B5%84%E6%BA%90">每个网址代表一种资源</a>，因此网址中不能有动词，只能有名词，而且使用的这些名词往往和数据库的表格名称对应。一般来说，数据库中的表都是同种记录的集合，因此 API 中的名词也应该使用复数</li>
+</ul>
+<h1 id="你刚刚说在-RESTful-架构中，每个网址代表一种资源，那我对它进行操作的时候应该怎么做"><a href="#你刚刚说在-RESTful-架构中，每个网址代表一种资源，那我对它进行操作的时候应该怎么做" class="headerlink" title="你刚刚说在 RESTful 架构中，每个网址代表一种资源，那我对它进行操作的时候应该怎么做"></a>你刚刚说在 RESTful 架构中，每个网址代表一种资源，那我对它进行操作的时候应该怎么做</h1><ul>
+<li>一般我们对资源会进行四种操作，即获取、创建、修改和删除，这四种操作刚好对应了 HTTP 协议提供的 GET、POST、PUT 和 DELETE 方法，这样，通过判断 HTTP 的请求方法，我们能清楚地知道我们需要对资源进行那种操作</li>
+<li>对资源的修改也可以使用 PATCH 方法，它跟 PUT 的区别是：PATCH 是用来对资源进行局部更新，即只需要传输需要修改的部分，减少带宽</li>
+</ul>
+<h1 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li><p>RESTful  API 是目前比较成熟的一套接口设计理论（规则）</p>
+</li>
+<li><p>之所以出现这种模式，是因为当前发展趋势是前端设备层出不穷（比如说移动端各种 APP、小程序；电脑端的网页、应用程序等），但前后端之间的通信需要一种统一的机制，而 RESTful API 就是一种比较成熟的机制。</p>
+</li>
+<li><p>在 RESTful 架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以 API 中的名词也应该使用复数。</p>
+</li>
+<li><p>对于资源的具体操作类型，由 HTTP 动词表示</p>
+<ul>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）</li>
+<li>POST（CREATE）：在服务器新建一个资源</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）</li>
+<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）</li>
+<li>DELETE（DELETE）：从服务器删除资源</li>
+</ul>
+</li>
+<li><p>RESTful API 最好做到 Hypermedia，即返回结果中提供链接，连向其他 API 方法，使得用户不查文档，也知道下一步应该做什么。</p>
+</li>
+<li><p>API 的身份认证应该使用 OAuth 2.0 框架</p>
+</li>
+<li><p>服务器返回的数据格式，应该尽量使用 JSON，避免使用 XML。</p>
+</li>
+<li><p>RESTful 架构（总结）</p>
+<ul>
+<li>每一个 URI 代表一种资源</li>
+<li>客户端和服务器之间，传递这种资源的某种表现层</li>
+<li>客户端通过 HTTP 动词，对服务器端资源进行操作，实现”表现层状态转化”</li>
+</ul>
+</li>
+</ul>
+<h1 id="进化顺序"><a href="#进化顺序" class="headerlink" title="进化顺序"></a>进化顺序</h1><ul>
+<li>RPC $\rightarrow$ SOAP $\rightarrow$ RESTful</li>
+</ul>
+<h1 id="OAuth2-0"><a href="#OAuth2-0" class="headerlink" title="OAuth2.0"></a>OAuth2.0</h1><ul>
+<li><p>目前最流行的授权机制，用来授权第三方应用，获取用户数据。</p>
+<ul>
+<li>数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。</li>
+</ul>
+</li>
+<li><p>Token 种类</p>
+<ul>
+<li>授权码（authorization-code）</li>
+<li>隐藏式（implicit）</li>
+<li>密码式（password）</li>
+<li>客户端凭证（client credentials）</li>
+</ul>
+</li>
+<li><p>为了防止 token 不被滥用，第三方首先要到系统备案，拿到客户端 ID（client ID）和客户端密钥（client secret）</p>
+<p><img src="/images/%E5%BE%AE%E6%9C%8D%E5%8A%A1/OAuth2.png" alt="OAuth2"></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/19/Git/" rel="prev" title="Git">
+      <i class="fa fa-chevron-left"></i> Git
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/19/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" rel="next" title="运维开发">
+      运维开发 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8%E5%AE%83"><span class="nav-number">1.</span> <span class="nav-text">什么是微服务架构，为什么采用它</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">单体应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%86%E5%88%86%E5%92%8C%E9%9B%86%E7%BE%A4%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">拆分和集群之间有什么区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9C%A8%E4%BD%A0%E4%BB%AC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%98%AF%E6%80%8E%E4%B9%88%E5%BA%94%E7%94%A8%E7%9A%84"><span class="nav-number">4.</span> <span class="nav-text">微服务在你们项目中是怎么应用的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RESTful-%E6%98%AF%E5%95%A5%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E5%AE%83"><span class="nav-number">5.</span> <span class="nav-text">RESTful 是啥，为什么需要使用它</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%A0%E5%88%9A%E5%88%9A%E8%AF%B4%E5%9C%A8-RESTful-%E6%9E%B6%E6%9E%84%E4%B8%AD%EF%BC%8C%E6%AF%8F%E4%B8%AA%E7%BD%91%E5%9D%80%E4%BB%A3%E8%A1%A8%E4%B8%80%E7%A7%8D%E8%B5%84%E6%BA%90%EF%BC%8C%E9%82%A3%E6%88%91%E5%AF%B9%E5%AE%83%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C%E7%9A%84%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">6.</span> <span class="nav-text">你刚刚说在 RESTful 架构中，每个网址代表一种资源，那我对它进行操作的时候应该怎么做</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RESTful"><span class="nav-number">7.</span> <span class="nav-text">RESTful</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">8.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%8C%96%E9%A1%BA%E5%BA%8F"><span class="nav-number">9.</span> <span class="nav-text">进化顺序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OAuth2-0"><span class="nav-number">10.</span> <span class="nav-text">OAuth2.0</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bling"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Bling</p>
+  <div class="site-description" itemprop="description">绳锯木断，水滴石穿</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-01 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bling</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

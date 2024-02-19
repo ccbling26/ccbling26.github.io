@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="http://example.com/2024/02/19/Docker/index.html">
+<meta property="og:site_name" content="随笔">
+<meta property="og:description" content="Docker">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-19T08:31:24.000Z">
+<meta property="article:modified_time" content="2024-02-19T08:32:55.318Z">
+<meta property="article:author" content="Bling">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/02/19/Docker/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker | 随笔</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">随笔</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Bling">
+      <meta itemprop="description" content="绳锯木断，水滴石穿">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随笔">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-19 16:31:24 / 修改时间：16:32:55" itemprop="dateCreated datePublished" datetime="2024-02-19T16:31:24+08:00">2024-02-19</time>
+            </span>
+
+          
+            <div class="post-description">Docker</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>在传统的部署工作上，由于不同的机器有不同的操作系统，不同的库和组件，所以在将一个应用部署到多台机器上往往需要大量的环境配置工作，而 Docker 的出现，主要解决了大量环境配置的问题，极大的提高了部署的效率，减轻部署人员的工作量。</li>
+<li>Docker 是一种虚拟化技术，对进程是隔离的，使用 docker 可以不修改应用程序的代码，不需要开发人员考虑特定的环境，就能将现有的应用程序部署在机器上。</li>
+</ul>
+<h1 id="与虚拟机的区别"><a href="#与虚拟机的区别" class="headerlink" title="与虚拟机的区别"></a>与虚拟机的区别</h1><ul>
+<li>虚拟机也是一种虚拟化的技术，但是与 docker 最大的区别就是虚拟机是通过<strong>模拟硬件</strong>，并在硬件上安装操作系统来实现的。启动docker，相当于启动宿主操作系统的一个进程</li>
+<li>启动速度上，docker 由于是进程，非常快，而虚拟机需要先启动虚拟机的操作系统，再启动应用，过程很慢 </li>
+<li>占用资源上，虚拟机是一个完整的操作系统，需要占用大量磁盘、内存、CPU，占用资源多。docker 只是一个进程，只需要将应用相关的组件打包，运行时占用很少的资源。</li>
+</ul>
+<h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul>
+<li>更容易迁移：提供一致性的运行环境，打包好的应用可以在不同的机器上进行迁移，不用担心环境变化</li>
+<li>更容易复用维护：应用可以更容易使用重复的部分，复用程度高，方便维护</li>
+<li>更容易扩展：使用基础镜像可以进一步扩展得到新的镜像</li>
+</ul>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ul>
+<li>微服务架构中：docker 轻量级的特点很适合快速部署，维护。</li>
+<li>持续集成方面：由于 docker 具有隔离性和轻量级的特点，将代码集成到一个 docker 不会影响其他的 docker</li>
+<li>提供可伸缩的云服务：根据应用负载情况，快速的增加减少 docker 的数量</li>
+</ul>
+<h1 id="镜像和容器"><a href="#镜像和容器" class="headerlink" title="镜像和容器"></a>镜像和容器</h1><ul>
+<li>镜像是一种静态的结构，可以看成面向对象里的类，而容器是镜像的一个实例。</li>
+<li>镜像包含着容器运行时所需要的代码和其他组件，它是一种分层结构，每一层都是只读的，构建镜像时，会一层一层构建，前一层是后一层的基础，镜像这种分层存储很适合镜像的复用和定制。</li>
+<li>构建容器时，通过在镜像的基础上添加一个可写层，用于保存容器运行过程中的修改。</li>
+</ul>
+<h1 id="Dockerfile-配置文件中-COPY-和-ADD-指令的区别"><a href="#Dockerfile-配置文件中-COPY-和-ADD-指令的区别" class="headerlink" title="Dockerfile 配置文件中 COPY 和 ADD 指令的区别"></a>Dockerfile 配置文件中 COPY 和 ADD 指令的区别</h1><ul>
+<li>COPY 只是将本地文件拷入容器这么简单，而 ADD 有一些其它特性功能，比如需要在本地自动解压文件到容器中的操作</li>
+</ul>
+<h1 id="Docker-hub"><a href="#Docker-hub" class="headerlink" title="Docker hub"></a>Docker hub</h1><ul>
+<li>Docker hub 是云基础的 Docker 注册服务平台，它允许用户访问 Docker 中心资源库，创建自己的 Docker 映像并测试，推送并存储创建好的 Docker 映像，连接 Docker 云平台将已创建好的指定 Docker 映像布署到本地主机等任务</li>
+</ul>
+<h1 id="Docker-的启动流程"><a href="#Docker-的启动流程" class="headerlink" title="Docker 的启动流程"></a>Docker 的启动流程</h1><ul>
+<li>创建 Dockerfile 配置文件。Dockerfile 配置文件就是创建 Docker image （映像）的源代码。</li>
+<li>一旦 Dockerfile 配置好了，就可以创建（build）并生成 image（映像），image 就是 Dockerfile 配置文件中 <strong>源代码</strong>的<strong>编译</strong>版本。</li>
+<li>一旦有了 image，就可以在 registry（注册中心）发布它。registry 类似 git 的资源库——你可以推送你的映像（image），也可取回库中的映像（image）。</li>
+<li>之后，你就可以使用 image 去启动运行 containers（容器）。运行中的容器在许多方面，与虚拟机非常相似，但容器的运行不需要虚拟管理软件的运行。</li>
+</ul>
+<h1 id="Docker-Swarm"><a href="#Docker-Swarm" class="headerlink" title="Docker Swarm"></a>Docker Swarm</h1><ul>
+<li>是原生的 Docker 集群服务工具。它将一群 Docker 主机集成为单一一个虚拟 Docker 主机。利用一个 Docker 守护进程，通过标准的 Docker API 和任何完善的通讯工具，Docker Swarm 提供透明地将 Docker 主机扩散到多台主机上的服务。</li>
+</ul>
+<h1 id="Docker-底层的运行原理"><a href="#Docker-底层的运行原理" class="headerlink" title="Docker 底层的运行原理"></a>Docker 底层的运行原理</h1><ul>
+<li>Linux 内核级别上有一种名为<strong>命名空间（namespace）</strong> 的技术 ，不同命名空间的进程是不能访问其他命名空间的资源的，这提供了某种对公共资源的虚拟化和隔离的技术。这就是 Docker 技术的底层工作原理：每个容器运行在它自己的命名空间中，但是，确实与其它运行中的容器共用相同的系统内核。隔离的产生是由于系统内核清楚地知道命名空间及其中的进程，且这些进程调用系统 API 时，内核保证进程只能访问属于其命名空间中的资源。</li>
+</ul>
+<h1 id="Docker-配置国内源"><a href="#Docker-配置国内源" class="headerlink" title="Docker 配置国内源"></a>Docker 配置国内源</h1><ul>
+<li><p>创建文件 <code>/etc/docker/daemon.json</code></p>
+</li>
+<li><p>添加镜像地址</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;https://registry.docker-cn.com&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos:centos8</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="创建、启动容器"><a href="#创建、启动容器" class="headerlink" title="创建、启动容器"></a>创建、启动容器</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name=<span class="string">&quot;centos8&quot;</span> centos:centos8</span><br><span class="line">docker <span class="built_in">exec</span> -it centos8 /bin/bash</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/">docker hub</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/19/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" rel="prev" title="运维开发">
+      <i class="fa fa-chevron-left"></i> 运维开发
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/19/Openresty/" rel="next" title="Openresty">
+      Openresty <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">与虚拟机的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF"><span class="nav-number">3.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">镜像和容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dockerfile-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD-COPY-%E5%92%8C-ADD-%E6%8C%87%E4%BB%A4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">Dockerfile 配置文件中 COPY 和 ADD 指令的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-hub"><span class="nav-number">7.</span> <span class="nav-text">Docker hub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">8.</span> <span class="nav-text">Docker 的启动流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Swarm"><span class="nav-number">9.</span> <span class="nav-text">Docker Swarm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E5%BA%95%E5%B1%82%E7%9A%84%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">Docker 底层的运行原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E6%BA%90"><span class="nav-number">11.</span> <span class="nav-text">Docker 配置国内源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-number">12.</span> <span class="nav-text">拉取镜像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E3%80%81%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-number">13.</span> <span class="nav-text">创建、启动容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">14.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bling"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Bling</p>
+  <div class="site-description" itemprop="description">绳锯木断，水滴石穿</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-01 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bling</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

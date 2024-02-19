@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django">
+<meta property="og:url" content="http://example.com/2024/02/19/Django/index.html">
+<meta property="og:site_name" content="随笔">
+<meta property="og:description" content="Django">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/Django/image-20230305155620957.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230305153747146.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304183021683.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304185309605.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304194912238.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304200222239.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304201229085.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304201241380.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304165535304.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304201514603.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304201448891.png">
+<meta property="og:image" content="http://example.com/images/Django/image-20230304201552631.png">
+<meta property="article:published_time" content="2024-02-19T08:37:26.000Z">
+<meta property="article:modified_time" content="2024-02-19T08:37:47.080Z">
+<meta property="article:author" content="Bling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/Django/image-20230305155620957.png">
+
+<link rel="canonical" href="http://example.com/2024/02/19/Django/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Django | 随笔</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">随笔</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/19/Django/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Bling">
+      <meta itemprop="description" content="绳锯木断，水滴石穿">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="随笔">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-19 16:37:26 / 修改时间：16:37:47" itemprop="dateCreated datePublished" datetime="2024-02-19T16:37:26+08:00">2024-02-19</time>
+            </span>
+
+          
+            <div class="post-description">Django</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>Django 是用 Python 实现的一种开源 Web 应用框架，其本质是 socket 服务端，采用 MVT（Model-View-Template） 框架模式</li>
+</ul>
+<h1 id="运行方式"><a href="#运行方式" class="headerlink" title="运行方式"></a>运行方式</h1><h2 id="runserver"><a href="#runserver" class="headerlink" title="runserver"></a>runserver</h2><ul>
+<li><p>使用 Django 自带的 WSGI Server 运行，<strong>主要是在测试和开发中使用</strong></p>
+<ul>
+<li>线上采用 Nginx（处理静态请求） + uWSGI（处理动态请求）</li>
+</ul>
+</li>
+<li><p>WSGI：Web Server Gateway Interface，一种协议，定义了 Web 服务器和 Python Web 应用程序之间的接口规范</p>
+</li>
+<li><p>runserver 核心内容（<a href="#runserver%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B">详细步骤</a>）</p>
+<ul>
+<li><p>调用将调用 <code>django.core.servers.basehttp.get_internal_wsgi_application</code> 方法中的 <code>get_wsgi_application()</code> 获取 <code>WSGIHandler</code></p>
+<ul>
+<li>通过 <code>get_internal_wsgi_application()</code> 源码可以看出，Django 会先根据 <code>settings</code> 中的 <code>WSGI_APPLICATION</code> 来获取 Handler</li>
+<li>在创建 Django 项目时，Django 会默认创建一个 <code>wsgi.py</code>，而 <code>settings</code> 中的<code>WSGI_APPLICATION</code> 配置也会默认指向这个文件</li>
+</ul>
+</li>
+<li><p>根据 <code>ip_address</code> 和 <code>port</code> 生成一个 <code>WSGIServer</code> 对象，接受用户请求</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="uWSGI"><a href="#uWSGI" class="headerlink" title="uWSGI"></a>uWSGI</h2><ul>
+<li><p>uWSGI：一个实现了 WSGI 协议的 Web 服务器，支持多种协议和功能</p>
+</li>
+<li><p>uwsgi</p>
+<ul>
+<li>一种快速且低延迟的协议，用于将 Web 服务器和 Python Web 应用程序连接起来</li>
+<li>一种工具，一个实现了 uwsgi 协议的 Web 服务器，支持多线程、异步 I&#x2F;O、HTTP&#x2F;1.1 和 WebSockets 等功能。</li>
+</ul>
+</li>
+<li><p>部署和配置</p>
+<ul>
+<li><p><code>uwsgi.ini</code></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="comment"># 项目目录</span></span><br><span class="line"><span class="attr">chdir</span>=/root/Project/test_gunicorn/</span><br><span class="line"><span class="comment"># 指定项目的application</span></span><br><span class="line"><span class="attr">wsgi-file</span>=test_gunicorn/wsgi.py</span><br><span class="line"><span class="comment"># 设置 uWSGI 与客户端之间的超时时间</span></span><br><span class="line"><span class="attr">http-timeout</span> = <span class="number">600</span></span><br><span class="line"><span class="comment"># 控制 HTTP keep-alive 连接的超时时间</span></span><br><span class="line"><span class="attr">http-timeout-keep-alive</span> = <span class="number">60</span></span><br><span class="line"><span class="comment"># 控制 HTTP keep-alive 行为</span></span><br><span class="line"><span class="attr">http-keepalive</span> = <span class="literal">True</span></span><br><span class="line"><span class="comment"># 指定 IP 和端口</span></span><br><span class="line"><span class="attr">http</span> = <span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">8000</span></span><br><span class="line"><span class="comment"># 启用主进程</span></span><br><span class="line"><span class="attr">master</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">processes</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">threads</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 每个子进程处理的最大请求数量</span></span><br><span class="line"><span class="attr">max-requests</span> = <span class="number">1000</span></span><br><span class="line"><span class="comment"># 当服务停止的时候，自动移除 unix socket 和 pid 文件</span></span><br><span class="line"><span class="attr">vacuum</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在退出时自动清理 uWSGI 所创建的 Unix 套接字和 pid 文件</span></span><br><span class="line"><span class="attr">die-on-term</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 设置日志目录</span></span><br><span class="line"><span class="attr">daemonize</span>=/root/Project/test_gunicorn/logs/uwsgi.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi -i uwsgi.ini</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Django/image-20230305155620957.png" alt="image-20230305155620957"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Gunicorn"><a href="#Gunicorn" class="headerlink" title="Gunicorn"></a>Gunicorn</h2><ul>
+<li><p>一个 Python Web 应用程序的 Web 服务器</p>
+</li>
+<li><p>支持多种 Worker 类型，包括 sync、gevent 和 eventlet，可以根据需要选择不同的 Worker 类型来实现高性能和高并发</p>
+</li>
+<li><p>通过使用 pre-fork 模型来实现并发处理。在启动时，它会派生多个子进程来处理 Web 请求，每个子进程都是一个单独的 Python 解释器实例。当有新的 Web 请求到来时，Gunicorn 会将请求分配给其中一个子进程进行处理，从而实现并发处理。</p>
+</li>
+<li><p>部署和配置</p>
+<ul>
+<li><p><code>gunicorn.conf.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bind = <span class="string">&quot;0.0.0.0:8000&quot;</span></span><br><span class="line">workers = <span class="number">2</span></span><br><span class="line">worker_class = <span class="string">&quot;gevent&quot;</span></span><br><span class="line">loglevel = <span class="string">&quot;info&quot;</span></span><br><span class="line">accesslog = <span class="string">&quot;/root/Project/test_gunicorn/logs/access.log&quot;</span></span><br><span class="line">errorlog = <span class="string">&quot;/root/Project/test_gunicorn/logs/error.log&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m gunicorn test_gunicorn.wsgi -c gunicorn.conf.py</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Django/image-20230305153747146.png" alt="image-20230305153747146"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="runserver-具体启动流程"><a href="#runserver-具体启动流程" class="headerlink" title="runserver 具体启动流程"></a><a name=runserver启动流程>runserver 具体启动流程</a></h1><ul>
+<li><p>命令 <code>python manage.py runserver</code> 的意思是：执行 python 命令，传入的参数为 <code>manage.py</code> 和 <code>runserver</code>，这两个参数会保存到 <code>sys.argv</code> 中，并在 <code>manage.py</code> 中通过调用 Django 的 <code>execute_from_command_line</code> 方法执行内部实现的 <code>runserver</code> 命令</p>
+<p><img src="/images/Django/image-20230304183021683.png" alt="image-20230304183021683"></p>
+<p><img src="/images/Django/image-20230304185309605.png" alt="image-202303041853096053"></p>
+<p><img src="/images/Django/image-20230304194912238.png" alt="image-20230304194912238"></p>
+</li>
+<li><p>找到 <code>runserver</code> 对应的模块后，会依次调用从父类继承的 <code>run_from_argv</code> $\rightarrow$ <code>execute</code> $\rightarrow$ <code>handle</code> $\rightarrow$ <code>run</code> $\rightarrow$ <code>inner_run</code>，完成参数解析</p>
+<p><img src="/images/Django/image-20230304200222239.png" alt="image-20230304200222239"></p>
+</li>
+<li><p><code>inner_run</code> 函数会调用 <code>get_handler</code> 方法，该方法将调用将调用 <code>django.core.servers.basehttp.get_internal_wsgi_application</code> 方法中的 <code>get_wsgi_application()</code> 获取 <code>WSGIHandler</code></p>
+<p><img src="/images/Django/image-20230304201229085.png" alt="image-20230304201229085"></p>
+<p><img src="/images/Django/image-20230304201241380.png" alt="image-20230304201241380"></p>
+<p><img src="/images/Django/image-20230304165535304.png" alt="image-20230304165535304"></p>
+<p><img src="/images/Django/image-20230304201514603.png" alt="image-20230304201514603"></p>
+<p><img src="/images/Django/image-20230304201448891.png" alt="image-20230304201448891"></p>
+<p><img src="/images/Django/image-20230304201552631.png" alt="image-20230304201552631"></p>
+</li>
+<li><p>根据 <code>ip_address</code> 和 <code>port</code> 生成一个 <code>WSGIServer</code> 对象，接受用户请求</p>
+</li>
+</ul>
+<h1 id="Django-REST-Framework"><a href="#Django-REST-Framework" class="headerlink" title="Django REST Framework"></a>Django REST Framework</h1><h2 id="DRF-的使用与安装"><a href="#DRF-的使用与安装" class="headerlink" title="DRF 的使用与安装"></a>DRF 的使用与安装</h2><ul>
+<li>安装 DRF</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install djangorestframework</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取一个图形化的页面来操作 API，需要将<code>rest_framework</code>注册到 Django 项目的<code>INSTALL_APP</code>中</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;rest_framework&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;other_app&#x27;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="序列化（Serialization）"><a href="#序列化（Serialization）" class="headerlink" title="序列化（Serialization）"></a>序列化（Serialization）</h2><ul>
+<li>序列化：将属于各种编程语言的<strong>数据类型或对象</strong>转换为可通过网络传输或可存储到本地磁盘的数据格式（如：<strong>XML、JSON或特定格式的字符串</strong>）</li>
+<li>反序列化：序列化的相反过程</li>
+<li>例子：<ul>
+<li>Python 自带<code>json</code>模块的<code>dumps</code>方法</li>
+<li>Django 自带的<code>serializers</code>类，将<code>QuerySet</code>格式的数据转化为<code>json</code>格式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core <span class="keyword">import</span> serializers</span><br><span class="line">data = serializers.serialize(<span class="string">&quot;json&quot;</span>, SomeModel.objects.<span class="built_in">all</span>(), fields=(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;name&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="自定义序列化器"><a href="#自定义序列化器" class="headerlink" title="自定义序列化器"></a>自定义序列化器</h2><ul>
+<li>DRF 提供了<code>Serializer</code>类和<code>ModelSerializer</code>类，前者需手动指定需要序列化和反序列化的字段，而后者是根据模型生成</li>
+</ul>
+<h3 id="使用-Serializer-类"><a href="#使用-Serializer-类" class="headerlink" title="使用 Serializer 类"></a>使用 Serializer 类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleSerializer</span>(serializers.Serializer):</span><br><span class="line">    <span class="built_in">id</span> = serializers.IntegerField(read_only=<span class="literal">True</span>)</span><br><span class="line">    title = serializers.CharField(required=<span class="literal">True</span>, allow_blank=<span class="literal">True</span>, max_length=<span class="number">90</span>)</span><br><span class="line">    body = serializers.CharField(required=<span class="literal">False</span>, allow_blank=<span class="literal">True</span>)</span><br><span class="line">    author = serializers.ReadOnlyField(source=<span class="string">&quot;author.id&quot;</span>)</span><br><span class="line">    status = serializers.ChoiceField(choices=Article.STATUS_CHOICES, default=<span class="string">&#x27;p&#x27;</span>)</span><br><span class="line">    create_date = serializers.DateTimeField(read_only=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>仅可读字段：进入<code>read_only=True</code>参数或者使用<code>ReadOnlyField</code>字段，指客户端是不需要也不能够通过<code>POST</code>或<code>PUT</code>请求提交相关数据进行反序列化</li>
+</ul>
+<h3 id="使用-ModelSerializer-类"><a href="#使用-ModelSerializer-类" class="headerlink" title="使用 ModelSerializer 类"></a>使用 ModelSerializer 类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleSerializer</span>(serializers.ModelSerializer):</span><br><span class="line">	author = serializers.HiddenField(default=serializers.CurrentUserDefault())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = Article</span><br><span class="line">        fields = <span class="string">&#x27;__all__&#x27;</span></span><br><span class="line">        read_only_fields = (<span class="string">&#x27;id&#x27;</span>, create_date<span class="string">&#x27;)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>隐藏字段：不接受用户的输入，默认情况下也不会出现在输出当中，包含于<code>validate_data</code>中。这里<code>author</code>的默认值为<code>request.user</code></li>
+</ul>
+<h3 id="改变序列化器的输出"><a href="#改变序列化器的输出" class="headerlink" title="改变序列化器的输出"></a>改变序列化器的输出</h3><ul>
+<li>使用 source</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleSerializer</span>(serializers.ModelSerializer):</span><br><span class="line">	author = serializers.ReadOnlyField(source=<span class="string">&quot;author.username&quot;</span>)</span><br><span class="line">	full_status = serializers.ReadOnlyField(source=<span class="string">&quot;get_status_display&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">		model = Article</span><br><span class="line">		fields = <span class="string">&#x27;__all__&#x27;</span></span><br><span class="line">		read_only_fields = (<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;author&#x27;</span>, <span class="string">&#x27;create_date&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 SerializerMethodField<ul>
+<li>用于显示模型中原本不存在的字段，类似可读字段</li>
+<li>可用于将任何类型的数据添加到对象的序列化表示；不能通过反序列化对其直接进行修改</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleSerializer</span>(serializers.ModelSerializer):  </span><br><span class="line">    author = serializers.ReadOnlyField(source=<span class="string">&quot;author.username&quot;</span>)  </span><br><span class="line">    full_status = serializers.ReadOnlyField(source=<span class="string">&quot;get_status_display&quot;</span>)  </span><br><span class="line">    cn_status = serializers.SerializerMethodField()  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:  </span><br><span class="line">        model = Article  </span><br><span class="line">        fields = <span class="string">&#x27;__all__&#x27;</span>  </span><br><span class="line">        read_only_fields = (<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;author&#x27;</span>, <span class="string">&#x27;create_date&#x27;</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_cn_status</span>(<span class="params">self, obj</span>):  </span><br><span class="line">        <span class="keyword">if</span> obj.status == <span class="string">&#x27;p&#x27;</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;已发表&quot;</span>  </span><br><span class="line">        <span class="keyword">elif</span> obj.status == <span class="string">&#x27;d&#x27;</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;草稿&quot;</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 to_representation<ul>
+<li>直接修改将要输出的序列化数据</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleSerializer</span>(serializers.ModelSerializer):  </span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:  </span><br><span class="line">        model = Article  </span><br><span class="line">        fields = <span class="string">&#x27;__all__&#x27;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">to_representation</span>(<span class="params">self, value</span>):  </span><br><span class="line">        <span class="comment"># 调用父类获取当前序列化数据，value代表每个对象实例ob  </span></span><br><span class="line">        data = <span class="built_in">super</span>().to_representation(value)  </span><br><span class="line">        <span class="built_in">print</span>(data)  </span><br><span class="line">        <span class="comment"># 对序列化数据做修改，添加新的数据  </span></span><br><span class="line">        data[<span class="string">&quot;hello&quot;</span>] = <span class="string">&quot;hello&quot;</span>  </span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用嵌套序列化器</li>
+<li>设置关联模型深度</li>
+<li>序列化日期和时间</li>
+</ul>
+<h2 id="编写-API-视图"><a href="#编写-API-视图" class="headerlink" title="编写 API 视图"></a>编写 API 视图</h2><h3 id="函数视图：使用-api-view-装饰器"><a href="#函数视图：使用-api-view-装饰器" class="headerlink" title="函数视图：使用 api_view 装饰器"></a>函数视图：使用 api_view 装饰器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@api_view(<span class="params">[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">article_list</span>(<span class="params">request</span>):</span><br><span class="line">	<span class="keyword">if</span> request.method == <span class="string">&quot;GET&quot;</span>:</span><br><span class="line">		articles = Article.objects.<span class="built_in">all</span>()</span><br><span class="line">		serializer = ArticleSerializer(articles, many=<span class="literal">True</span>)</span><br><span class="line">		<span class="keyword">return</span> Response(serializer.data)</span><br><span class="line">	<span class="keyword">elif</span> request.method == <span class="string">&quot;POST&quot;</span>:</span><br><span class="line">		serializer = ArticleSerializer(data=request.data)</span><br><span class="line">		<span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">			serializer.save()</span><br><span class="line">			<span class="keyword">return</span> Response(serializer.data, status=status.HTTP_201_CREATED)         </span><br><span class="line">		<span class="keyword">return</span> Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(<span class="params">[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>, <span class="string">&quot;PUT&quot;</span>, <span class="string">&quot;DELETE&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">article_detail</span>(<span class="params">request, pk</span>):</span><br><span class="line">	<span class="keyword">try</span>:  </span><br><span class="line">	    article = Article.objects.get(pk=pk)  </span><br><span class="line">	<span class="keyword">except</span> Article.DoesNotExist:  </span><br><span class="line">	    <span class="keyword">return</span> Response(status=status.HTTP_404_NOT_FOUND)  </span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:  </span><br><span class="line">	    serializer = ArticleSerializer(article)  </span><br><span class="line">	    <span class="keyword">return</span> Response(serializer.data)</span><br><span class="line">	<span class="keyword">elif</span> request.method == <span class="string">&#x27;PUT&#x27;</span>:  </span><br><span class="line">	    serializer = ArticleSerializer(article, data=request.data)  </span><br><span class="line">	    <span class="keyword">if</span> serializer.is_valid():  </span><br><span class="line">	        serializer.save()  </span><br><span class="line">	        <span class="keyword">return</span> Response(serializer.data)  </span><br><span class="line">	    <span class="keyword">return</span> Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line">	<span class="keyword">elif</span> request.method == <span class="string">&#x27;DELETE&#x27;</span>:  </span><br><span class="line">	    article.delete()  </span><br><span class="line">	    <span class="keyword">return</span> Response(status=status.HTTP_204_NO_CONTENT)</span><br></pre></td></tr></table></figure>
+
+<h3 id="类视图和视图集"><a href="#类视图和视图集" class="headerlink" title="类视图和视图集"></a>类视图和视图集</h3><ul>
+<li>完全使用函数视图编写项目会导致代码的复用率低</li>
+<li>类可以被继承扩展，可以将共用的功能抽象成 Mixin 类或基类，提高代码复用率</li>
+<li>DRF 提供了4种开发基于类的视图（CBV）开发模式<ul>
+<li>基础的<code>APIView</code>类</li>
+<li><code>Mixins</code>类和<code>GenericAPI</code>类混配</li>
+<li>通用视图<code>generic.*</code>类</li>
+<li>视图集<code>ViewSet</code>和<code>ModelViewSet</code></li>
+</ul>
+</li>
+<li>Detail<ul>
+<li><a target="_blank" rel="noopener" href="https://pythondjango.cn/django/rest-framework/3-CBV-APIView-viewsets/">https://pythondjango.cn/django/rest-framework/3-CBV-APIView-viewsets/</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/19/JWT/" rel="prev" title="JWT">
+      <i class="fa fa-chevron-left"></i> JWT
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/19/Python%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/" rel="next" title="Python 异步任务队列">
+      Python 异步任务队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">运行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#runserver"><span class="nav-number">2.1.</span> <span class="nav-text">runserver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uWSGI"><span class="nav-number">2.2.</span> <span class="nav-text">uWSGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gunicorn"><span class="nav-number">2.3.</span> <span class="nav-text">Gunicorn</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#runserver-%E5%85%B7%E4%BD%93%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">runserver 具体启动流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Django-REST-Framework"><span class="nav-number">4.</span> <span class="nav-text">Django REST Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DRF-%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">4.1.</span> <span class="nav-text">DRF 的使用与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88Serialization%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">序列化（Serialization）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8"><span class="nav-number">4.3.</span> <span class="nav-text">自定义序列化器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Serializer-%E7%B1%BB"><span class="nav-number">4.3.1.</span> <span class="nav-text">使用 Serializer 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-ModelSerializer-%E7%B1%BB"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用 ModelSerializer 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%8F%98%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E7%9A%84%E8%BE%93%E5%87%BA"><span class="nav-number">4.3.3.</span> <span class="nav-text">改变序列化器的输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E5%86%99-API-%E8%A7%86%E5%9B%BE"><span class="nav-number">4.4.</span> <span class="nav-text">编写 API 视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%A7%86%E5%9B%BE%EF%BC%9A%E4%BD%BF%E7%94%A8-api-view-%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="nav-number">4.4.1.</span> <span class="nav-text">函数视图：使用 api_view 装饰器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E8%A7%86%E5%9B%BE%E5%92%8C%E8%A7%86%E5%9B%BE%E9%9B%86"><span class="nav-number">4.4.2.</span> <span class="nav-text">类视图和视图集</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bling"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Bling</p>
+  <div class="site-description" itemprop="description">绳锯木断，水滴石穿</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-01 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bling</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
