@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="随笔">
 <meta property="og:description" content="MySQL">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/MySQL/MySQL%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/images/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/mysql%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B.png">
 <meta property="og:image" content="http://example.com/images/MySQL/%E6%95%B0%E6%8D%AE%E9%A1%B5%E7%BB%93%E6%9E%84.png">
 <meta property="og:image" content="http://example.com/images/MySQL/%E6%95%B0%E6%8D%AE%E9%A1%B5%E7%BB%93%E6%9E%84%E5%90%84%E9%83%A8%E5%88%86%E4%BD%9C%E7%94%A8.png">
 <meta property="og:image" content="http://example.com/images/MySQL/%E9%A1%B5%E7%9B%AE%E5%BD%95%E4%B8%8E%E8%AE%B0%E5%BD%95%E7%9A%84%E5%85%B3%E7%B3%BB.png">
@@ -40,10 +40,10 @@
 <meta property="og:image" content="http://example.com/images/MySQL/redo_log.png">
 <meta property="og:image" content="http://example.com/images/MySQL/sql_join.png">
 <meta property="article:published_time" content="2024-02-19T07:45:12.000Z">
-<meta property="article:modified_time" content="2024-02-19T08:08:24.830Z">
+<meta property="article:modified_time" content="2024-02-20T08:11:42.274Z">
 <meta property="article:author" content="Bling">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/MySQL/MySQL%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:image" content="http://example.com/images/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/mysql%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B.png">
 
 <link rel="canonical" href="http://example.com/2024/02/19/MySQL/">
 
@@ -195,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-02-19 15:45:12 / 修改时间：16:08:24" itemprop="dateCreated datePublished" datetime="2024-02-19T15:45:12+08:00">2024-02-19</time>
+              <time title="创建时间：2024-02-19 15:45:12" itemprop="dateCreated datePublished" datetime="2024-02-19T15:45:12+08:00">2024-02-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-20 16:11:42" itemprop="dateModified" datetime="2024-02-20T16:11:42+08:00">2024-02-20</time>
+              </span>
 
           
             <div class="post-description">MySQL</div>
@@ -212,8 +218,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="执行一条SQL语句，期间发生了什么"><a href="#执行一条SQL语句，期间发生了什么" class="headerlink" title="执行一条SQL语句，期间发生了什么"></a>执行一条SQL语句，期间发生了什么</h2><img src="/images/MySQL/MySQL逻辑结构.png" alt="MySQL逻辑结构" style="zoom:50%;" />
-
+        <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="执行一条SQL语句，期间发生了什么"><a href="#执行一条SQL语句，期间发生了什么" class="headerlink" title="执行一条SQL语句，期间发生了什么"></a>执行一条SQL语句，期间发生了什么</h2><p><img src="/images/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/mysql%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B.png" alt="mysql查询流程"></p>
 <ul>
 <li><p>当客户端运行一条 SQL 语句时，首先需要连接数据库，这时候由连接器负责，它主要跟客户端进行授权认证，建立连接，获取权限，维持连接状态</p>
 </li>
