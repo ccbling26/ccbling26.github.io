@@ -28,7 +28,7 @@
 <meta property="og:description" content="Linux 操作指令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-19T08:24:13.000Z">
-<meta property="article:modified_time" content="2024-02-19T08:25:30.704Z">
+<meta property="article:modified_time" content="2024-02-28T14:29:29.196Z">
 <meta property="article:author" content="Bling">
 <meta name="twitter:card" content="summary">
 
@@ -182,10 +182,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-02-19 16:24:13 / 修改时间：16:25:30" itemprop="dateCreated datePublished" datetime="2024-02-19T16:24:13+08:00">2024-02-19</time>
+              <time title="创建时间：2024-02-19 16:24:13" itemprop="dateCreated datePublished" datetime="2024-02-19T16:24:13+08:00">2024-02-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-28 22:29:29" itemprop="dateModified" datetime="2024-02-28T22:29:29+08:00">2024-02-28</time>
+              </span>
 
           
             <div class="post-description">Linux 操作指令</div>
@@ -199,56 +205,79 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h1><ul>
+        <h1 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h1><h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>change mode，控制用户对文件的权限的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># u/g/o/a: 文件拥有者/文件拥有者的同一群体的人/其他以外的人/前面三个都是</span></span><br><span class="line"><span class="comment"># r/w/x/X: 读/写/执行/只有当该文件是个子目录或者该文件已经被设定过为可执行</span></span><br><span class="line"><span class="comment"># +/-/=: 增加权限/去除权限/设置权限</span></span><br><span class="line"><span class="built_in">chmod</span> u=rwx, g=rw, o=r ./test.log</span><br><span class="line"><span class="comment"># 等价的八进制数表示</span></span><br><span class="line"><span class="built_in">chmod</span> 754 ./test.log</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p>从文件的每一行剪切字节、字符和字段并将这些字节、字符和字段写至标准输出</p>
+<p>如果不指定 <code>file</code> 参数，<code>cut</code> 命令将读取标准输入。必须指定 <code>-b</code>、<code>-c</code> 或 <code>-f</code> 标志之一</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -b: 以字节为单位进行分割。这些字节位置将忽略多字节字符边界，除非也指定了 -n 标志</span></span><br><span class="line"><span class="comment"># -n: 取消分割多字节字符。仅和 -b 标志一起使用。如果字符的最后一个字节落在由 -b 标志的 List 参数指示的</span></span><br><span class="line"><span class="comment"># 范围之内，该字符将被写出；否则，该字符将被排除</span></span><br><span class="line"><span class="built_in">cut</span> [-bn] [file]</span><br><span class="line"><span class="comment"># -c: 以字符为单位进行分割</span></span><br><span class="line"><span class="built_in">cut</span> [-c] [file]</span><br><span class="line"><span class="comment"># -d: 自定义分隔符，默认为制表符</span></span><br><span class="line"><span class="comment"># -f: 与 -d 一起使用，指定显示哪个区域</span></span><br><span class="line"><span class="built_in">cut</span> [-<span class="built_in">df</span>] [file]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><p>与 <code>more</code> 类似，可以随意浏览文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">less [参数] 文件</span><br><span class="line"><span class="comment"># -m: 显示类似 more 命令的百分比</span></span><br><span class="line"><span class="comment"># -N: 显示每行的百分比</span></span><br><span class="line"><span class="comment"># -o &lt;文件名&gt;: 将 less 输出的内容在指定文件中保存起来</span></span><br><span class="line"><span class="comment"># -s: 显示连续空行为一行</span></span><br><span class="line"><span class="comment"># -S: 行过长时将超出部分舍弃</span></span><br><span class="line"><span class="comment"># /字符串: 向下搜索字符串的功能</span></span><br><span class="line"><span class="comment"># ?字符串: 向上搜索字符串的功能</span></span><br><span class="line"><span class="comment"># n: 重复前一个 / 或 ? 搜索</span></span><br><span class="line"><span class="comment"># N: 反向重复前一个 / 或 ? 搜索</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><p>类似 <code>cat</code>，以一页一页的形式显示，按 <code>SPACE</code> 下一页，按 <code>b</code> 上一页</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -s: 当遇到有连续两行以上的空白行，就代换为一行的空白行</span></span><br><span class="line"><span class="comment"># -num: 一次显示的行数</span></span><br><span class="line"><span class="comment"># +/pattern: 在每个文档显示前搜寻该字串（pattern），然后从该字串之后开始显示</span></span><br><span class="line"><span class="comment"># +linenum: 从第 linenum 行开始显示</span></span><br><span class="line">more [-dlfpcsu] [-num] [+/pattern] [+linenum] [fileNames...]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="split"><a href="#split" class="headerlink" title="split"></a>split</h2><p>用于将一个文件分割成数个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -&lt;行数&gt;: 指定每多少行切成一个小文件</span></span><br><span class="line"><span class="comment"># -b&lt;字节&gt;: 指定每多少字节切成一个小文件</span></span><br><span class="line"><span class="comment"># -C&lt;字节&gt;: 与参数 -b 相似，但在切割时将尽量维持每行的完整性</span></span><br><span class="line"><span class="comment"># output: 设置切割后文件的前置文件名，split 会自动在前置文件名后再加上编号</span></span><br><span class="line"><span class="built_in">split</span> [-&lt;行数&gt;][-b &lt;字节&gt;][-C &lt;字节&gt;][-l &lt;行数&gt;] filename output</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="查看被占用的端口"><a href="#查看被占用的端口" class="headerlink" title="查看被占用的端口"></a>查看被占用的端口</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List Open Files</span></span><br><span class="line">lsof -i:端口号</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -a: 显示所有连线中的 Socket</span></span><br><span class="line"><span class="comment"># -t: 显示 TCP 传输协议的连线状况</span></span><br><span class="line"><span class="comment"># -u: 显示 UDP 传输协议的连线状况</span></span><br><span class="line"><span class="comment"># -n: 直接使用 IP 地址，而不通过域名服务器</span></span><br><span class="line"><span class="comment"># -l: 显示监控中的服务器的 Socket</span></span><br><span class="line"><span class="comment"># -p: 显示正在使用 Socket 的程序识别码和程序名称</span></span><br><span class="line">netstat -tunlp | grep 端口号</span><br><span class="line">netstat -anp | grep 端口号</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="unclassified"><a href="#unclassified" class="headerlink" title="unclassified"></a>unclassified</h1><h2 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h2><ul>
 <li>把后台暂停的工作恢复到后台执行</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bg</span> %工作号  <span class="comment"># 若 %工作号 省略，则会将带有 + 号的工作恢复到后台</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h1><p>change mode，控制用户对文件的权限的命令</p>
-<ul>
-<li>u（文件拥有者）g（文件拥有者的同一群体的人）o（其他以外的人）</li>
-<li>r（读）w（写）x（执行权限）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> u=rwx, g=rw, o=r ./test.log</span><br><span class="line"><span class="comment"># 等价的八进制数表示</span></span><br><span class="line"><span class="built_in">chmod</span> 754 ./test.log</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h1><ul>
+<h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><ul>
 <li>change owner，用于设置文件所有者和文件关联组的命令，需要超级用户 root 的权限才能执行该命令</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> -R user:userGroup <span class="built_in">dir</span> <span class="comment"># 将目录及其下面的所有文件、子目录的文件的拥有者改成 user，群体使用者为 userGroup</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h1><ul>
+<h2 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h2><ul>
 <li>可从标准输入或文件中读取数据，根据指定的格式来转换数据，再输出到文件、设备或标准输出</li>
 </ul>
-<h1 id="df"><a href="#df" class="headerlink" title="df"></a>df</h1><p>disk free，显示目前在 Linux 系统上的文件系统磁盘使用情况统计</p>
-<h1 id="du"><a href="#du" class="headerlink" title="du"></a>du</h1><p>disk usage，显示指定的目录或文件所占用的磁盘空间</p>
+<h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p>disk free，显示目前在 Linux 系统上的文件系统磁盘使用情况统计</p>
+<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><p>disk usage，显示指定的目录或文件所占用的磁盘空间</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">du</span> -m test.txt  <span class="comment"># 以 MB 为单位查看文件大小</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="fg"><a href="#fg" class="headerlink" title="fg"></a>fg</h1><ul>
+<h2 id="fg"><a href="#fg" class="headerlink" title="fg"></a>fg</h2><ul>
 <li>把后台命令恢复在前台执行</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fg</span> %工作号  <span class="comment"># 若 %工作号 省略，则会将带有 + 号的工作恢复到前台</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="free"><a href="#free" class="headerlink" title="free"></a>free</h1><p>显示内存的使用情况，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等</p>
+<h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><p>显示内存的使用情况，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># grammer</span></span><br><span class="line">free [-bkmotV][-s &lt;间隔秒数&gt;]</span><br><span class="line"><span class="comment"># -b: 以 Byte 为单位显示内存使用情况</span></span><br><span class="line"><span class="comment"># -k: 以 KB 为单位显示内存使用情况</span></span><br><span class="line"><span class="comment"># -m: 以 MB 为单位显示内存使用情况</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h1><p>强大的文本搜索工具，用于查找文件里符合条件的字符串或正则表达式</p>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>强大的文本搜索工具，用于查找文件里符合条件的字符串或正则表达式</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;match_pattern&quot;</span> file_name	<span class="comment"># 在文件中查找字符串，返回文本行</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="head"><a href="#head" class="headerlink" title="head"></a>head</h1><p>用于查看文件的开头部分的内容</p>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>用于查看文件的开头部分的内容</p>
 <ul>
 <li>-q：隐藏文件名</li>
 <li>-v：显示文件名</li>
@@ -259,8 +288,8 @@
 
 
 
-<h1 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h1><p>显示或设置网络设备</p>
-<h1 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h1><ul>
+<h2 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h2><p>显示或设置网络设备</p>
+<h2 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h2><ul>
 <li>查看当前终端放入后台的工作</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">jobs</span> [选项]</span><br></pre></td></tr></table></figure>
@@ -276,17 +305,12 @@
 
 
 
-<h1 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h1><p>为某一个文件在另外一个位置建立一个同步的链接</p>
+<h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h2><p>为某一个文件在另外一个位置建立一个同步的链接</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> [参数][源文件或目录][目标文件或目录]</span><br><span class="line"><span class="comment"># 软连接</span></span><br><span class="line"><span class="built_in">ln</span> -s xxx xxx</span><br><span class="line"><span class="comment"># 硬链接</span></span><br><span class="line"><span class="built_in">ln</span> xxx xxx</span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h1><p>list open files，用于查看进程打开的文件，打开文件的进程，进程打开的端口（TCP、UDP）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i:端口号	<span class="comment"># 查看端口占用的进程</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h1><p>用于删除执行中的程序或工作</p>
+<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p>用于删除执行中的程序或工作</p>
 <ul>
 <li>常用信号<ul>
 <li>1（HUP）重新加载进程</li>
@@ -299,23 +323,12 @@
 
 
 
-<h1 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h1><p>用于显示网络状态</p>
-<ul>
-<li><code>-a</code>：显示所有连线中的 Socket</li>
-<li><code>-n</code>：直接使用 IP 地址，而不通过域名服务器</li>
-<li><code>-p</code>：显示正在使用 Socket 的程序识别码和程序名称</li>
-<li><code>-t</code>：显示 TCP 传输协议的连线状况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># grammer</span></span><br><span class="line">netstat [-acCeFghilMnNoprstuvVwx][-A&lt;网络类型&gt;][--ip]</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><p>显示当前进程的状态</p>
+<h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p>显示当前进程的状态</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps aux <span class="comment"># 列出目前所有正在内存当中的程序</span></span><br><span class="line">ps -ef | grep 进程关键字	<span class="comment"># 查找指定进程</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h1><blockquote>
+<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-scp.html">https://www.runoob.com/linux/linux-comm-scp.html</a></p>
 </blockquote>
 <ul>
@@ -324,64 +337,77 @@
 <li><p>scp 是加密的，rcp 是不加密的</p>
 </li>
 </ul>
-<h2 id="本地到远程"><a href="#本地到远程" class="headerlink" title="本地到远程"></a>本地到远程</h2><ul>
+<blockquote>
+<p>本地到远程</p>
+</blockquote>
+<ul>
 <li><p>文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /home/myfile/tmp.txt root@192.168.1.100:/data/</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /home/myfile root@192.168.1.100:/data/</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="远程到本机"><a href="#远程到本机" class="headerlink" title="远程到本机"></a>远程到本机</h2><ul>
+<blockquote>
+<p>远程到本机</p>
+</blockquote>
+<ul>
 <li><p>文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@192.168.1.100:/data/tmp.txt /home/myfile/</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r root@192.168.1.100:/data /home/myfile/</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h1 id="su"><a href="#su" class="headerlink" title="su"></a>su</h1><p>用于变更为其他使用者的身份，除 root 外，需要键入该使用者的密码</p>
+<h2 id="su"><a href="#su" class="headerlink" title="su"></a>su</h2><p>用于变更为其他使用者的身份，除 root 外，需要键入该使用者的密码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -username	<span class="comment"># 切换到 username 用户并改变工作目录至 username 的家目录</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h1><p>查看文件的末尾部分</p>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p>查看文件的末尾部分</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># grammar</span></span><br><span class="line"><span class="built_in">tail</span> [参数] [文件]</span><br><span class="line"><span class="built_in">tail</span> -n 10 test.txt	<span class="comment"># 查看末尾10行</span></span><br><span class="line"><span class="built_in">tail</span> -f debug.log		<span class="comment"># 查看日志文件，自动显示新增内容，默认十行</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h1><blockquote>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tar.html">https://www.runoob.com/linux/linux-comm-tar.html</a></p>
 </blockquote>
 <ul>
 <li>用于打包&#x2F;解压文件</li>
 </ul>
-<h2 id="常用选项说明"><a href="#常用选项说明" class="headerlink" title="常用选项说明"></a>常用选项说明</h2><ul>
+<blockquote>
+<p>常用选项说明</p>
+</blockquote>
+<ul>
 <li><code>-c</code>：建立新的备份文件</li>
 <li><code>-f</code>：指定备份文件名称</li>
 <li><code>-x</code>：从备份文件中还原文件</li>
 <li><code>-v</code>：显示指令执行过程</li>
 <li><code>-z</code>：通过 gzip 指令处理备份文件</li>
 </ul>
-<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf myfile.tar /home/myfile</span><br><span class="line">tar -czvf myfile.tar.gz /home/myfile</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>打包</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf myfile.tar /home/myfile</span><br><span class="line">tar -czvf myfile.tar.gz /home/myfile</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>解压</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf myfile.tar</span><br><span class="line">tar -xzvf myfile.tar.gz</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf myfile.tar</span><br><span class="line">tar -xzvf myfile.tar.gz</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h1><ul>
+<h2 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h2><ul>
 <li>用于远程登录（也可以用于检查网络连接是否正常以及特定端口是否处于打开状态）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet [主机名] [端口号]</span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="top"><a href="#top" class="headerlink" title="top"></a>top</h1><p>提供了一个动态的、交互式的实时视图，显示系统的整体性能信息以及正在运行的进程的相关信息</p>
+<h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><p>提供了一个动态的、交互式的实时视图，显示系统的整体性能信息以及正在运行的进程的相关信息</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h1><p>用于计算字数</p>
+<h2 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h2><p>用于计算字数</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">wc</span> -l * <span class="comment"># 统计当前目录下的所有文件行数及总计行数</span></span><br><span class="line"><span class="built_in">wc</span> test.txt</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="comment">#  7		 8       70   test.txt</span></span><br><span class="line"><span class="comment"># 行数	单词数		字节数		文件名</span></span><br></pre></td></tr></table></figure>
 
 
@@ -464,7 +490,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bg"><span class="nav-number">1.</span> <span class="nav-text">bg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chmod"><span class="nav-number">2.</span> <span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chown"><span class="nav-number">3.</span> <span class="nav-text">chown</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dd"><span class="nav-number">4.</span> <span class="nav-text">dd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#df"><span class="nav-number">5.</span> <span class="nav-text">df</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#du"><span class="nav-number">6.</span> <span class="nav-text">du</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fg"><span class="nav-number">7.</span> <span class="nav-text">fg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#free"><span class="nav-number">8.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grep"><span class="nav-number">9.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#head"><span class="nav-number">10.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ifconfig"><span class="nav-number">11.</span> <span class="nav-text">ifconfig</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jobs"><span class="nav-number">12.</span> <span class="nav-text">jobs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ln"><span class="nav-number">13.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lsof"><span class="nav-number">14.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kill"><span class="nav-number">15.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat"><span class="nav-number">16.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps"><span class="nav-number">17.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp"><span class="nav-number">18.</span> <span class="nav-text">scp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%88%B0%E8%BF%9C%E7%A8%8B"><span class="nav-number">18.1.</span> <span class="nav-text">本地到远程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%88%B0%E6%9C%AC%E6%9C%BA"><span class="nav-number">18.2.</span> <span class="nav-text">远程到本机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#su"><span class="nav-number">19.</span> <span class="nav-text">su</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tail"><span class="nav-number">20.</span> <span class="nav-text">tail</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar"><span class="nav-number">21.</span> <span class="nav-text">tar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9%E8%AF%B4%E6%98%8E"><span class="nav-number">21.1.</span> <span class="nav-text">常用选项说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85"><span class="nav-number">21.2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B"><span class="nav-number">21.3.</span> <span class="nav-text">解压</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#telnet"><span class="nav-number">22.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#top"><span class="nav-number">23.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wc"><span class="nav-number">24.</span> <span class="nav-text">wc</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-number">1.1.</span> <span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cut"><span class="nav-number">1.2.</span> <span class="nav-text">cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-number">1.3.</span> <span class="nav-text">less</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-number">1.4.</span> <span class="nav-text">more</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#split"><span class="nav-number">1.5.</span> <span class="nav-text">split</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-number">2.</span> <span class="nav-text">查看被占用的端口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unclassified"><span class="nav-number">3.</span> <span class="nav-text">unclassified</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bg"><span class="nav-number">3.1.</span> <span class="nav-text">bg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown"><span class="nav-number">3.2.</span> <span class="nav-text">chown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dd"><span class="nav-number">3.3.</span> <span class="nav-text">dd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-number">3.4.</span> <span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-number">3.5.</span> <span class="nav-text">du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fg"><span class="nav-number">3.6.</span> <span class="nav-text">fg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#free"><span class="nav-number">3.7.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">3.8.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-number">3.9.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ifconfig"><span class="nav-number">3.10.</span> <span class="nav-text">ifconfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jobs"><span class="nav-number">3.11.</span> <span class="nav-text">jobs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ln"><span class="nav-number">3.12.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">3.13.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-number">3.14.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-number">3.15.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su"><span class="nav-number">3.16.</span> <span class="nav-text">su</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tail"><span class="nav-number">3.17.</span> <span class="nav-text">tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">3.18.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet"><span class="nav-number">3.19.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top"><span class="nav-number">3.20.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wc"><span class="nav-number">3.21.</span> <span class="nav-text">wc</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
